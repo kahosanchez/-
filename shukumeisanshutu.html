@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="宿命算出"><meta name="theme-color" content="#b08d3c">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>宿命算出｜算命学・数秘</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f7f6f3;--cd:#fff;--tx:#3b3b40;--mu:#9a9aa0;--ac:#b08d3c;--bd:#e7e5df;--ok:#8a7335;--ng:#b4564a;--tcb:#f6efdc;--tcc:#b08d3c;--ij:#c0562f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#18181b;--cd:#222226;--tx:#ececee;--mu:#9a9aa3;--ac:#d4b25a;--bd:#34343a;--ok:#d4b25a;--ng:#e8938a;--tcb:#33301f;--tcc:#d4b25a;--ij:#ef8a63}}
+:root[data-theme="dark"]{--bg:#18181b;--cd:#222226;--tx:#ececee;--mu:#9a9aa3;--ac:#d4b25a;--bd:#34343a;--ok:#d4b25a;--ng:#e8938a;--tcb:#33301f;--tcc:#d4b25a;--ij:#ef8a63}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0 auto;background:var(--bg);color:var(--tx);font:12px/1.5 -apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;padding:10px;max-width:760px}
+h1{font-size:17px;margin:2px 0}h2{font-size:11px;margin:0 0 4px;color:var(--ac)}h3{font-size:13px;margin:0 0 6px}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:10px;padding:9px;margin-bottom:9px}
+.row{display:flex;gap:5px;margin-bottom:5px;align-items:center}.row b{width:14px;color:var(--ac)}
+input,select{min-width:0;padding:6px;border:1px solid var(--bd);border-radius:7px;background:var(--bg);color:var(--tx);font:inherit}
+button{width:100%;padding:9px;border:0;border-radius:9px;background:var(--ac);color:#fff;font:600 14px inherit;cursor:pointer}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+table{width:100%;border-collapse:collapse;text-align:center}td,th{padding:1px 2px}
+.big{font-size:16px;font-weight:700}.zk div{font-size:10px;color:var(--mu)}.zk .on{color:var(--ac);font-weight:700}
+.yo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--bd)}
+.yo b{border:1px solid var(--bd);padding:4px 0;text-align:center;font-size:9.5px;font-weight:500;min-height:32px;line-height:1.3}.yo small{display:block;color:var(--mu);font-size:8px}
+.ph{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));text-align:center;font-size:15px;font-weight:700}
+.ph i{height:7px;border:1px solid var(--mu);border-top:0;margin:0 2px}.ph em{font-style:normal;font-size:9px;min-height:14px}
+.t{display:inline-block;padding:0 4px;border-radius:4px;font-size:9px;margin:1px 1px 1px 0;color:var(--ok);border:1px solid currentColor;white-space:nowrap;cursor:pointer}.t.n{color:var(--ng)}
+.chip{display:inline-block;padding:0 7px;border-radius:99px;border:1px solid var(--bd);margin:1px 2px 1px 0;font-size:10px;cursor:pointer}
+.un{font-size:9.5px;margin-bottom:6px}.t.x{color:var(--tx)}.un .t{border:0;padding:0;display:block;margin:0;font-size:9.5px}.un th{font-size:9px;color:var(--mu);font-weight:400}.un td{border-bottom:1px dashed var(--bd);text-align:left;vertical-align:top;padding:2px 1px}.un tr.tc td{background:var(--tcb)}
+.note{color:var(--mu);font-size:9.5px}.score{font-size:32px;font-weight:800;color:var(--ac);text-align:center;line-height:1}
+.mx{font-size:10px}.mx td,.mx th{border:1px solid var(--bd);padding:3px 1px;height:36px}
+.exp{margin-top:6px;padding:6px 8px;border-radius:8px;background:var(--bg);border:1px solid var(--bd);font-size:11px}
+details summary{cursor:pointer;color:var(--ac);font-weight:600;margin:5px 0;font-size:11px}
+</style></head><body>
+<h1>宿命算出</h1>
+<div class="note" style="margin-bottom:10px">算命学（陰占・陽占・位相法・大運・年運・宇宙盤）＋数秘術。2人入力で相性（相性表・宇宙盤重ね）も算出。</div>
+<div class="card">
+<div class="row"><b>A</b><input id="na" placeholder="名前" style="width:28%"><input id="da" inputmode="numeric" placeholder="生年月日 例 1999/5/28" style="flex:1"><select id="ga"><option>女</option><option>男</option></select></div>
+<div class="row"><b>B</b><input id="nb" placeholder="名前" style="width:28%"><input id="db" inputmode="numeric" placeholder="生年月日 例 2000/3/12" style="flex:1"><select id="gb"><option>男</option><option>女</option></select></div>
+<button id="go">算出する</button>
+<div class="note" style="margin-top:6px">Bを空欄にすると個人鑑定。性別は大運の順逆に使います。</div>
+</div>
+<div id="out"></div>
+<div class="note">※節入りは天文計算（日単位）。蔵干は節入りからの日数で決定。格法・局方・宿命天中殺は簡易判定で、流派により異なります。時間は未使用。</div>
+<script>
+const S="甲乙丙丁戊己庚辛壬癸",B="子丑寅卯辰巳午未申酉戌亥",EL="木火土金水",EC=["#6fb58a","#e58f8c","#cfa95f","#a9b1bd","#7aa7d6"],BE=[4,2,0,0,2,1,1,2,3,3,2,4];
+const mod=(a,n)=>((a%n)+n)%n,esc=s=>s.replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';');
+const lon=t=>{const T=(t/864e5+2440587.5-2451545)/36525,r=Math.PI/180,L=280.46646+36000.76983*T,M=(357.52911+35999.05029*T)*r,
+C=(1.914602-.004817*T)*Math.sin(M)+.019993*Math.sin(2*M)+.000289*Math.sin(3*M);return mod(L+C,360)};
+const dEnd=(y,m,d)=>Date.UTC(y,m-1,d,14,59),mI=l=>Math.floor(mod(l-315,360)/30);
+const Z=["癸","癸9辛3己18","戊7丙7甲16","乙","乙9癸3戊18","戊5庚9丙16","己19丁11","丁9乙3己18","戊7壬3庚20","辛","辛9丁3戊18","戊7甲5壬18"];
+const zk=b=>{const r=[];Z[b].replace(/(.)(\d*)/g,(_,c,n)=>r.push({s:S.indexOf(c),n:+n}));return r};
+const TS=[["貫索","石門"],["鳳閣","調舒"],["禄存","司禄"],["車騎","牽牛"],["龍高","玉堂"]];
+const star=(a,b)=>TS[mod((b>>1)-(a>>1),5)][a%2==b%2?0:1]+"星";
+const LG=[11,6,2,9,2,9,5,0,8,3],JN="天報,天印,天貴,天恍,天南,天禄,天将,天堂,天胡,天極,天庫,天馳".split(",");
+const jun=(s,b)=>JN[mod(2+(s%2==0?b-LG[s]:LG[s]-b),12)]+"星";
+const n60=(s,b)=>{for(let i=0;i<60;i++)if(i%10==s&&i%12==b)return i;return 0};
+const TCB=[[10,11],[8,9],[6,7],[4,5],[2,3],[0,1]];
+const HE=[[0,1],[2,11],[3,10],[4,9],[5,8],[6,7]];
+const HAIM={"2,5":"東方害","8,11":"西方害","3,4":"中央害","9,10":"中央害","0,7":"南北害","1,6":"南北害"};
+const KEIM={"2,5":"生貴刑","5,8":"生貴刑","0,3":"旺気刑","1,10":"刑","7,10":"刑"},HAP=["0,9","1,4","2,11","3,6","7,10"];
+const SAN=[[8,0,4,"水"],[11,3,7,"木"],[2,6,10,"火"],[5,9,1,"金"]],HOU=[[2,3,4,"木"],[5,6,7,"火"],[8,9,10,"金"],[11,0,1,"水"]];
+function pr(a,b){const k=a<b?a+","+b:b+","+a,o=[];
+if(HE.some(p=>p[0]==a&&p[1]==b||p[0]==b&&p[1]==a))o.push(["支合","p"]);
+if(mod(a-b,12)==6)o.push(["冲","n"]);
+if(KEIM[k])o.push([KEIM[k],"n"]);else if(a==b&&[4,6,9,11].includes(a))o.push(["自刑","n"]);if(HAIM[k])o.push([HAIM[k],"n"]);
+if(HAP.includes(k))o.push(["破","n"]);
+if(a!=b){for(const g of SAN){const i=g.indexOf(a),j=g.indexOf(b);if(i>=0&&j>=0&&i<3&&j<3)o.push(["半会","p"])}
+}return o}
+function rn(x,y){const o=[],cx=mod(x.b-y.b,12)==6,sk=[2,3].includes(mod((y.s>>1)-(x.s>>1),5)),id=x.s==y.s&&x.b==y.b;
+if(Math.abs(x.s-y.s)==5&&x.l&&y.l&&(x.l=="日"||y.l=="日"))o.push(["干合","p"]);
+if(id)o.push(["律音","p"]);else if(x.b==y.b)o.push(["比和","x"]);
+if(x.s==y.s&&cx)o.push(["納音","n"]);
+pr(x.b,y.b).forEach(r=>{if(r[0]=="冲"){if(x.s==y.s)return;if(sk)r=["天剋地冲","n"]}if(id&&r[0]=="自刑")return;o.push(r)});return o}
+const exk=k=>k.includes("害")?"害":k.includes("刑")?"刑":k.split("（")[0];
+const tg=a=>a.map(([k,c])=>`<span class="t ${c}" data-ex="${exk(k)}">${k}</span>`).join("");
+const uniq=a=>[...new Map(a).entries()];
+const red=n=>{while(n>9&&n!=11&&n!=22&&n!=33)n=[...String(n)].reduce((a,c)=>a+ +c,0);return n};
+const IJ={};"甲戌,乙亥,戊戌,庚子,辛亥,丁巳".split(",").forEach(k=>IJ[k]="通常異常干支");"辛巳,壬午,丙戌,丁亥,戊子,癸巳,己亥".split(",").forEach(k=>IJ[k]="暗合異常干支");
+const SG={};[["不族の業","甲子甲辰"],["祇王の業","乙巳乙酉"],["不信の業","丙辰丙戌"],["徳攻の業","丁丑丁未"],["参籠の業","戊辰戊戌"],["倒柱の業","己巳己酉"],["傷体の業","庚辰庚戌"],["一人行の業","辛丑辛未"],["不子の業","壬子壬辰"],["倒異の業","癸酉癸亥"]].forEach(([n,k])=>{SG[k.slice(0,2)]=n;SG[k.slice(2)]=n});
+const JU=[[1,4,"推逆局","円推局"],[1,3,"生殺局","殺局"],[0,3,"井乱局","乱命局"],[0,2,"破財局","曲財局"],[2,4,"地財局","叉財局"]];
+const gi=x=>TS.findIndex(r=>r.some(n=>x.startsWith(n)));
+const chip=(t,k,c)=>`<span class="chip" data-ex="${k}"${c?` style="${c}"`:""}>${t}</span>`;
+const tkh=p=>{const a=[];p.R.forEach(x=>{const k=S[x.s]+B[x.b];
+if(IJ[k])a.push(chip(`異常干支 ${x.l}${k}（${IJ[k]}）`,EX[k]?k:"異常干支","color:var(--ij);border-color:var(--ij)"));
+if(SG[k])a.push(chip(`三業干支 ${
